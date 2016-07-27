@@ -7,10 +7,9 @@ public class Simulator {
     private double inflation = 0.035;
     private double simulations = 10000;
     private double years = 20;
-    private Portfolio portfolio;
 
-    public Simulator(Portfolio portfolio) {
-        this.portfolio = portfolio;
+    public Simulator() {
+
     }
 
     public double getInflation() {
@@ -35,13 +34,5 @@ public class Simulator {
 
     public void setYears(double years) {
         this.years = years;
-    }
-
-    public Portfolio getPortfolio() {
-        return portfolio;
-    }
-
-    public void setPortfolio(Portfolio portfolio) {
-        this.portfolio = portfolio;
     }
 }

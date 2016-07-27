@@ -1,5 +1,8 @@
 package com.portfolio.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by nesinha on 7/27/16.
  */
@@ -11,12 +14,14 @@ public class Portfolio {
     private double median;
     private double bestCase;
     private double worstCase;
+    private List<Double> endValues;
 
     public Portfolio(String name, double initialInvestment, double mean, double standardDeviation) {
         this.name = name;
         this.initialInvestment = initialInvestment;
         this.mean = mean;
         this.standardDeviation = standardDeviation;
+        this.endValues = new ArrayList<Double>();
     }
 
     public String getName() {
@@ -73,5 +78,13 @@ public class Portfolio {
 
     public void setWorstCase(double worstCase) {
         this.worstCase = worstCase;
+    }
+
+    public List<Double> getEndValues() {
+        return endValues;
+    }
+
+    public void setEndValues(List<Double> endValues) {
+        this.endValues = endValues;
     }
 }
