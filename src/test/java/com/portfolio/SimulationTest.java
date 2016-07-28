@@ -42,6 +42,7 @@ public class SimulationTest {
 
     @Test
     public void runSimulationNegative(){
+        String errorMsg = "";
         try {
             Portfolio conservative = new Portfolio("Conservative", -100000, 0.06198, 0.063438);
             Portfolio aggressive = new Portfolio("Aggressive", 100000, 0.094324, 0.15675);
@@ -57,8 +58,10 @@ public class SimulationTest {
             aggressiveSimulation.getPortfolioResults();
         }
         catch(InputValidationException e){
-            //System.out.println(e.getMessage());
-            Assert.assertEquals(e.getMessage(), "Portfolio input provided is not valid.\n Please provide a valid input and try again");
+            errorMsg = e.getMessage();
+        }
+        finally{
+            Assert.assertEquals(errorMsg, "Portfolio input provided is not valid.\nPlease provide a valid input and try again");
         }
     }
 }
