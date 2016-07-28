@@ -16,6 +16,8 @@ public class SimulationActivity {
     public SimulationActivity(Portfolio portfolio, Simulator simulator){
         this.portfolio = portfolio;
         this.simulator = simulator;
+        runSimulation();
+        getPortfolioResults();
     }
 
     public void runSimulation(){

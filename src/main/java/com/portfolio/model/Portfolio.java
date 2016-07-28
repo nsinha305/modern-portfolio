@@ -2,6 +2,9 @@ package com.portfolio.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.portfolio.exception.InputValidationException;
+import java.util.Locale;
+import java.text.NumberFormat;
 
 /**
  * Created by nesinha on 7/27/16.
@@ -16,12 +19,25 @@ public class Portfolio {
     private double worstCase;
     private List<Double> endValues;
 
-    public Portfolio(String name, double initialInvestment, double mean, double standardDeviation) {
+    public Portfolio(String name, double initialInvestment, double mean, double standardDeviation) throws InputValidationException{
         this.name = name;
         this.initialInvestment = initialInvestment;
         this.mean = mean;
         this.standardDeviation = standardDeviation;
         this.endValues = new ArrayList<Double>();
+        boolean isValid = validateInput();
+        if(!isValid){
+            throw new InputValidationException();
+        }
+    }
+
+    @Override
+    public String toString(){
+        return "\nName : " + name + "\nInitial investment : "
+                + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getInitialInvestment()) + "\nMedian : "
+                + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getMedian()) + "\nBest Case : "
+                + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getBestCase()) + "\nWorst Case : "
+                + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getWorstCase());
     }
 
     public String getName() {
@@ -86,5 +102,19 @@ public class Portfolio {
 
     public void setEndValues(List<Double> endValues) {
         this.endValues = endValues;
+    }
+
+    public boolean validateInput(){
+        boolean isValid = true;
+        if(getInitialInvestment()<0){
+            isValid = false;
+        }
+        if(getMean()<0){
+            isValid=false;
+        }
+        if(getStandardDeviation()<0){
+            isValid=false;
+        }
+        return isValid;
     }
 }
