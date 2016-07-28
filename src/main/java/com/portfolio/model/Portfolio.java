@@ -1,14 +1,17 @@
 package com.portfolio.model;
 
+import com.portfolio.exception.InputValidationException;
+
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import com.portfolio.exception.InputValidationException;
 import java.util.Locale;
-import java.text.NumberFormat;
 
 /**
  * Created by nesinha on 7/27/16.
+ * Class representation of Portfolio object
  */
+
 public class Portfolio {
     private String name;
     private double initialInvestment;
@@ -19,20 +22,20 @@ public class Portfolio {
     private double worstCase;
     private List<Double> endValues;
 
-    public Portfolio(String name, double initialInvestment, double mean, double standardDeviation) throws InputValidationException{
+    public Portfolio(String name, double initialInvestment, double mean, double standardDeviation) throws InputValidationException {
         setName(name);
         setInitialInvestment(initialInvestment);
         setMean(mean);
         setStandardDeviation(standardDeviation);
         setEndValues(new ArrayList<Double>());
         boolean isValid = validateInput();
-        if(!isValid){
+        if (!isValid) {
             throw new InputValidationException("Portfolio input provided is not valid.\nPlease provide a valid input and try again");
         }
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "\nName : " + getName() + "\nInitial investment : "
                 + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getInitialInvestment()) + "\nMedian : "
                 + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getMedian()) + "\nBest Case : "
@@ -104,16 +107,16 @@ public class Portfolio {
         this.endValues = endValues;
     }
 
-    public boolean validateInput(){
+    public boolean validateInput() {
         boolean isValid = true;
-        if(getInitialInvestment()<0){
+        if (getInitialInvestment() < 0) {
             isValid = false;
         }
-        if(getMean()<0){
-            isValid=false;
+        if (getMean() < 0) {
+            isValid = false;
         }
-        if(getStandardDeviation()<0){
-            isValid=false;
+        if (getStandardDeviation() < 0) {
+            isValid = false;
         }
         return isValid;
     }

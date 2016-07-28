@@ -8,6 +8,7 @@ import java.util.Properties;
 
 /**
  * Created by nesinha on 7/27/16.
+ * Class representation of Simulator object.
  */
 public class Simulator {
     private double inflation;
@@ -16,6 +17,7 @@ public class Simulator {
 
     public Simulator() throws InputValidationException {
         try {
+            //Simulator variables are read from a properties file -> simulator-config.properties
             InputStream input = getClass().getClassLoader().getResourceAsStream("simulator-config.properties");
             Properties prop = new Properties();
             prop.load(input);
