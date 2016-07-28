@@ -15,46 +15,50 @@ import org.junit.Assert;
 
 public class SimulationTest {
 
-    SimulationActivity conservativeSimulation;
-    SimulationActivity aggressiveSimulation;
-    Portfolio conservative;
-    Portfolio aggressive;
-    Simulator simulator;
-
-
-    @Before
-    public void initializeData(){
-        try {
-            conservative = new Portfolio("Conservative", 100000, 0.06198, 0.063438);
-            aggressive = new Portfolio("Aggressive", 100000, 0.094324, 0.15675);
-
-            simulator = new Simulator();
-
-            conservativeSimulation = new SimulationActivity(conservative, simulator);
-            aggressiveSimulation = new SimulationActivity(aggressive, simulator);
-        }
-        catch(InputValidationException e){
-            System.out.println("Input provided is not valid.\n Please provide a valid input and try again");
-        }
-    }
-
     @Test
     public void runSimulationPositive(){
-        initializeData();
-        //System.out.println(conservative.toString());
-        //System.out.println(aggressive.toString());
-        Assert.assertEquals(conservative.getMedian() < aggressive.getMedian(), true);
-        Assert.assertEquals(conservative.getBestCase() < aggressive.getBestCase(), true);
-        Assert.assertEquals(conservative.getWorstCase() < aggressive.getWorstCase(), false);
+        try {
+            Portfolio conservative = new Portfolio("Conservative", 100000, 0.06198, 0.063438);
+            Portfolio aggressive = new Portfolio("Aggressive", 100000, 0.094324, 0.15675);
+
+            Simulator simulator = new Simulator();
+
+            SimulationActivity conservativeSimulation = new SimulationActivity(conservative, simulator);
+            SimulationActivity aggressiveSimulation = new SimulationActivity(aggressive, simulator);
+
+            conservativeSimulation.runSimulation();
+            aggressiveSimulation.runSimulation();
+            conservativeSimulation.getPortfolioResults();
+            aggressiveSimulation.getPortfolioResults();
+
+            Assert.assertEquals(conservative.getMedian() < aggressive.getMedian(), true);
+            Assert.assertEquals(conservative.getBestCase() < aggressive.getBestCase(), true);
+            Assert.assertEquals(conservative.getWorstCase() < aggressive.getWorstCase(), false);
+        }
+        catch(InputValidationException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
     public void runSimulationNegative(){
-        initializeData();
-        //System.out.println(conservative.toString());
-        //System.out.println(aggressive.toString());
-        Assert.assertEquals(conservative.getMedian() > aggressive.getMedian(), false);
-        Assert.assertEquals(conservative.getBestCase() > aggressive.getBestCase(), false);
-        Assert.assertEquals(conservative.getWorstCase() > aggressive.getWorstCase(), true);
+        try {
+            Portfolio conservative = new Portfolio("Conservative", -100000, 0.06198, 0.063438);
+            Portfolio aggressive = new Portfolio("Aggressive", 100000, 0.094324, 0.15675);
+
+            Simulator simulator = new Simulator();
+
+            SimulationActivity conservativeSimulation = new SimulationActivity(conservative, simulator);
+            SimulationActivity aggressiveSimulation = new SimulationActivity(aggressive, simulator);
+
+            conservativeSimulation.runSimulation();
+            aggressiveSimulation.runSimulation();
+            conservativeSimulation.getPortfolioResults();
+            aggressiveSimulation.getPortfolioResults();
+        }
+        catch(InputValidationException e){
+            //System.out.println(e.getMessage());
+            Assert.assertEquals(e.getMessage(), "Portfolio input provided is not valid.\n Please provide a valid input and try again");
+        }
     }
 }

@@ -20,20 +20,20 @@ public class Portfolio {
     private List<Double> endValues;
 
     public Portfolio(String name, double initialInvestment, double mean, double standardDeviation) throws InputValidationException{
-        this.name = name;
-        this.initialInvestment = initialInvestment;
-        this.mean = mean;
-        this.standardDeviation = standardDeviation;
-        this.endValues = new ArrayList<Double>();
+        setName(name);
+        setInitialInvestment(initialInvestment);
+        setMean(mean);
+        setStandardDeviation(standardDeviation);
+        setEndValues(new ArrayList<Double>());
         boolean isValid = validateInput();
         if(!isValid){
-            throw new InputValidationException();
+            throw new InputValidationException("Portfolio input provided is not valid.\nPlease provide a valid input and try again");
         }
     }
 
     @Override
     public String toString(){
-        return "\nName : " + name + "\nInitial investment : "
+        return "\nName : " + getName() + "\nInitial investment : "
                 + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getInitialInvestment()) + "\nMedian : "
                 + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getMedian()) + "\nBest Case : "
                 + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(getBestCase()) + "\nWorst Case : "
