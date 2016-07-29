@@ -10,6 +10,7 @@ A Real Time implementation of Modern Portfolio Theory is to build an optimal ass
 Details of the Portfolios :
 
 Aggressive Portfolio        ->   Return(Mean) : 9.4324%   ,   Risk(Standard Deviation) : 15.675%
+
 Very Conservative Portfolio ->   Return(Mean) : 6.1890%   ,   Risk(Standard Deviation) : 6.3438%
 
 
@@ -23,6 +24,7 @@ Portfolio Inflation Adjusted Values from Simulation for both portfolios - aggres
 
  
 Assumptions
+
 1. We would like to use a random number generator to ensure Gaussian distribution of random numbers that are generated.
  
 2. 20th Year future value should be inflation adjusted at the rate of 3.5% each year. Ie. Year 1 value of 103.5 is equivalent to 100 at Year 0.
