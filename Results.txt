@@ -1,0 +1,18 @@
+Results -
+
+Name : Conservative
+Initial investment : $100,000.00
+Median : $157,896.79
+Best Case : $222,153.86
+Worst Case : $112,275.97
+
+Name : Aggressive
+Initial investment : $100,000.00
+Median : $247,437.75
+Best Case : $563,853.58
+Worst Case : $105,014.70
+
+Simulator Details - 
+Number of Simulations : 10000.0
+Each Simulation is for 20.0 years
+After each year inflation considered is 0.035
